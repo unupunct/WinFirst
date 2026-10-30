@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "profile_name": "Personal Computer",
+  "description": "A conservative baseline for a home desktop or shared family computer. Security controls are checked but never weakened.",
+  "settings": {
+    "hibernate_enabled": true,
+    "ac_display_timeout_minutes": 15,
+    "battery_display_timeout_minutes": 5,
+    "ac_sleep_timeout_minutes": 45,
+    "battery_sleep_timeout_minutes": 15,
+    "lid_close_action": "sleep",
+    "power_button_action": "sleep",
+    "show_file_extensions": true,
+    "show_hidden_files": false,
+    "show_super_hidden": false,
+    "open_explorer_to_this_pc": true,
+    "show_desktop_icon_this_pc": true,
+    "show_desktop_icon_user_files": true,
+    "create_god_mode": false,
+    "disable_advertising_id": true,
+    "disable_settings_suggestions": true,
+    "disable_activity_history_upload": true,
+    "disable_app_launch_tracking": true
+  },
+  "software": [
+    {"id": "7zip.7zip", "name": "7-Zip", "optional": true, "source": "winget"},
+    {"id": "Mozilla.Firefox", "name": "Mozilla Firefox", "optional": true, "source": "winget"},
+    {"id": "VideoLAN.VLC", "name": "VLC media player", "optional": true, "source": "winget"}
+  ],
+  "checklist": [
+    {"key": "backup_confirmed", "title": "Important files are backed up", "required": true},
+    {"key": "profile_applied", "title": "Apply and verify this profile", "required": true},
+    {"key": "updates_checked", "title": "Windows Update has been checked", "required": true},
+    {"key": "security_reviewed", "title": "Security status reviewed on the Privacy & Security page", "required": true}
+  ]
+}

@@ -1,0 +1,64 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    - cron: "0 4 * * 1"   # weekly live acceptance run
+  workflow_dispatch:
+    inputs:
+      live:
+        description: "Also run the live acceptance tests (changes Windows state on the runner)"
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+jobs:
+  unit:
+    name: Unit tests and UI smoke
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements.txt
+      - name: Install dependencies
+        run: python -m pip install -r requirements.txt
+      - name: Unit tests
+        run: python -m pytest
+      - name: UI load smoke (read-only page loads)
+        env:
+          PYTHONPATH: src
+          QT_QPA_PLATFORM: offscreen
+        run: python scripts/ui_load_smoke.py
+
+  live:
+    # Hosted runners are throwaway VMs, which is what the acceptance runner
+    # requires. Never enabled on pull requests.
+    name: Live acceptance (disposable runner)
+    if: github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.live)
+    needs: unit
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements.txt
+      - name: Install dependencies
+        run: python -m pip install -r requirements.txt
+      - name: Run acceptance scenarios
+        shell: powershell
+        run: powershell -ExecutionPolicy Bypass -File scripts\acceptance\run_acceptance.ps1 -ConfirmDisposableVM
+      - name: Upload evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: acceptance-results
+          path: acceptance-results

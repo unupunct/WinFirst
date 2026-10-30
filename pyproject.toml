@@ -1,0 +1,48 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "winfirst"
+version = "1.1.0"
+description = "WinFirst - Windows first-run, configuration, diagnostics and maintenance toolkit"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "WinFirst Contributors" }]
+keywords = ["windows", "deployment", "it-toolkit", "diagnostics", "pyside6"]
+dependencies = [
+    "PySide6>=6.6,<7",
+    "psutil>=5.9,<8",
+    "reportlab>=4.0,<6",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "pyinstaller>=6.3"]
+
+[project.scripts]
+winfirst = "winfirst.app:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+winfirst = [
+    "resources/styles/*.qss",
+    "resources/profiles/*.json",
+    "resources/catalog/*.json",
+    "resources/checklists/*.json",
+    "resources/icons/*",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+addopts = "-q"
+filterwarnings = [
+    "ignore::DeprecationWarning:PySide6.*",
+]
+markers = [
+    "live: changes real Windows state; skipped unless WINFIRST_LIVE=1",
+    "slow: takes minutes or longer",
+]

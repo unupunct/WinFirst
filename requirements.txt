@@ -1,0 +1,8 @@
+# WinFirst runtime dependencies (compatible major versions)
+PySide6>=6.6,<7        # LGPLv3 / commercial - Qt for Python desktop UI
+psutil>=5.9,<8         # BSD-3-Clause - process and storage metrics
+reportlab>=4.0,<6      # BSD-3-Clause - PDF report generation
+
+# Development and build only
+pytest>=8              # MIT
+pyinstaller>=6.3       # GPLv2 with bootloader exception

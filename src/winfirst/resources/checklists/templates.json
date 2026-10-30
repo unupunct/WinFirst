@@ -1,0 +1,160 @@
+{
+  "schema_version": 1,
+  "templates": [
+    {
+      "name": "Standard Workstation",
+      "description": "Baseline checklist for a newly configured desktop or laptop before handover.",
+      "tasks": [
+        {
+          "key": "profile_applied",
+          "title": "Configuration profile applied and verified",
+          "description": "Apply the selected profile and confirm that the drift detector reports no unexplained differences.",
+          "required": true,
+          "auto_check": {"type": "profile_applied"}
+        },
+        {
+          "key": "winget_ready",
+          "title": "Winget is available for approved software",
+          "description": "Winget is only needed if this build installs software from the approved catalog.",
+          "required": true,
+          "auto_check": {"type": "capability", "name": "winget"}
+        },
+        {
+          "key": "updates_checked",
+          "title": "Windows Update checked",
+          "description": "Review available updates on the Windows Update page. Installing updates is an explicit user action.",
+          "required": true
+        },
+        {
+          "key": "device_drivers_reviewed",
+          "title": "Devices and drivers reviewed",
+          "description": "Check Device Manager findings and decide whether a driver action is appropriate. Do not install unknown drivers.",
+          "required": true
+        },
+        {
+          "key": "security_reviewed",
+          "title": "Security posture reviewed",
+          "description": "Review Defender, Firewall, UAC, Secure Boot, TPM and BitLocker status. WinFirst never weakens these controls.",
+          "required": true
+        },
+        {
+          "key": "data_backed_up",
+          "title": "User data is backed up",
+          "description": "Confirm a current backup exists before any destructive cleanup or removal.",
+          "required": true
+        },
+        {
+          "key": "printer_tested",
+          "title": "Printer tested (if required)",
+          "description": "Print a test page if the user relies on a printer.",
+          "required": false
+        },
+        {
+          "key": "handover_notes",
+          "title": "Handover notes recorded",
+          "description": "Record account ownership, exceptions and follow-up work in the session notes.",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "Laptop Build",
+      "description": "Checklist for a portable system where battery, encryption and docking matter.",
+      "tasks": [
+        {
+          "key": "profile_applied",
+          "title": "Laptop profile applied and verified",
+          "description": "Use the Laptop Workstation profile or an approved custom profile and verify it with the drift detector.",
+          "required": true,
+          "auto_check": {"type": "profile_applied"}
+        },
+        {
+          "key": "battery_health_checked",
+          "title": "Battery health checked",
+          "description": "Review design capacity, full-charge capacity and estimated wear. Wear is an estimate.",
+          "required": true
+        },
+        {
+          "key": "bitlocker_reviewed",
+          "title": "Drive encryption reviewed",
+          "description": "Confirm BitLocker status. Enabling or managing recovery keys is outside WinFirst's automatic actions.",
+          "required": true
+        },
+        {
+          "key": "updates_checked",
+          "title": "Windows Update checked",
+          "description": "Review update and pending-restart status.",
+          "required": true
+        },
+        {
+          "key": "device_drivers_reviewed",
+          "title": "Laptop devices and drivers reviewed",
+          "description": "Check touchpad, camera, fingerprint, Wi-Fi and power-management devices for problem codes.",
+          "required": true
+        },
+        {
+          "key": "docking_tested",
+          "title": "Dock, external display and wired network tested",
+          "description": "Connect the dock and confirm display, USB and Ethernet behaviour.",
+          "required": false
+        },
+        {
+          "key": "backup_confirmed",
+          "title": "User data is backed up",
+          "description": "Confirm a current backup exists before any destructive action.",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "IT Technician Bench",
+      "description": "Checklist for a technician bench machine used for diagnostics and repair.",
+      "tasks": [
+        {
+          "key": "profile_applied",
+          "title": "Technician profile applied and verified",
+          "description": "Apply the IT Technician Workstation profile or an approved custom profile.",
+          "required": true,
+          "auto_check": {"type": "profile_applied"}
+        },
+        {
+          "key": "admin_rights",
+          "title": "WinFirst running with administrator rights",
+          "description": "Many diagnostics and repairs require elevation. Review the elevated indicator before proceeding.",
+          "required": true,
+          "auto_check": {"type": "capability", "name": "admin"}
+        },
+        {
+          "key": "toolkit_ready",
+          "title": "Diagnostic repository available",
+          "description": "Inventory the portable toolkit and verify checksums before using any approved installer. Scripts are never executed by WinFirst.",
+          "required": true
+        },
+        {
+          "key": "system_report_exported",
+          "title": "System report exported",
+          "description": "Generate an HTML or PDF report from the Reports page and store it with the job record.",
+          "required": true
+        },
+        {
+          "key": "security_reviewed",
+          "title": "Security posture reviewed",
+          "description": "Review security findings, pending updates and activation status.",
+          "required": true
+        },
+        {
+          "key": "data_backed_up",
+          "title": "Target data backed up",
+          "description": "Confirm the customer's data is backed up or that the job explicitly authorizes data loss.",
+          "required": true
+        },
+        {
+          "key": "handover_notes",
+          "title": "Technician handover notes recorded",
+          "description": "Record what was changed, what was not changed, and any follow-up required.",
+          "required": true
+        }
+      ]
+    }
+  ]
+}

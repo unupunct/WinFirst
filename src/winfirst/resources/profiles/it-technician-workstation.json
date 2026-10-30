@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "profile_name": "IT Technician Workstation",
+  "description": "A technician baseline with hidden files visible, longer idle timeouts, privacy defaults and a diagnostic toolset. Super-hidden system files remain hidden to reduce accidental damage.",
+  "settings": {
+    "hibernate_enabled": true,
+    "ac_display_timeout_minutes": 30,
+    "battery_display_timeout_minutes": 10,
+    "ac_sleep_timeout_minutes": 120,
+    "battery_sleep_timeout_minutes": 30,
+    "lid_close_action": "sleep",
+    "power_button_action": "shutdown",
+    "show_file_extensions": true,
+    "show_hidden_files": true,
+    "show_super_hidden": false,
+    "open_explorer_to_this_pc": true,
+    "show_desktop_icon_this_pc": true,
+    "show_desktop_icon_user_files": false,
+    "create_god_mode": true,
+    "disable_advertising_id": true,
+    "disable_settings_suggestions": true,
+    "disable_activity_history_upload": true,
+    "disable_app_launch_tracking": true
+  },
+  "software": [
+    {"id": "7zip.7zip", "name": "7-Zip", "optional": true, "source": "winget"},
+    {"id": "Notepad++.Notepad++", "name": "Notepad++", "optional": true, "source": "winget"},
+    {"id": "VideoLAN.VLC", "name": "VLC media player", "optional": true, "source": "winget"},
+    {"id": "Microsoft.PowerToys", "name": "Microsoft PowerToys", "optional": true, "source": "winget"},
+    {"id": "Microsoft.VisualStudioCode", "name": "Visual Studio Code", "optional": true, "source": "winget"},
+    {"id": "Git.Git", "name": "Git for Windows", "optional": true, "source": "winget"},
+    {"id": "PuTTY.PuTTY", "name": "PuTTY", "optional": true, "source": "winget"},
+    {"id": "WiresharkFoundation.Wireshark", "name": "Wireshark", "optional": true, "source": "winget"},
+    {"id": "Microsoft.WindowsTerminal", "name": "Windows Terminal", "optional": true, "source": "winget"}
+  ],
+  "checklist": [
+    {"key": "backup_confirmed", "title": "Target data is backed up before changes", "required": true},
+    {"key": "profile_applied", "title": "Apply and verify this profile", "required": true},
+    {"key": "toolkit_ready", "title": "Diagnostic tools and repository available", "required": true},
+    {"key": "drivers_current", "title": "Driver and device status reviewed", "required": true},
+    {"key": "security_reviewed", "title": "Security posture reviewed", "required": true},
+    {"key": "report_exported", "title": "System report exported and saved", "required": true},
+    {"key": "handover_notes", "title": "Technician notes and handover recorded", "required": false}
+  ]
+}

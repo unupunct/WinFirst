@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "profile_name": "Custom Configuration",
+  "description": "A safe starting point for a custom profile. Duplicate it, change settings, and use Configuration Drift to verify every value.",
+  "settings": {
+    "hibernate_enabled": true,
+    "show_file_extensions": true,
+    "show_hidden_files": false,
+    "show_super_hidden": false,
+    "open_explorer_to_this_pc": true,
+    "disable_advertising_id": true,
+    "disable_settings_suggestions": true,
+    "disable_activity_history_upload": true,
+    "disable_app_launch_tracking": true
+  },
+  "software": [],
+  "checklist": [
+    {"key": "backup_confirmed", "title": "Back up important files before applying changes", "required": true},
+    {"key": "profile_reviewed", "title": "Review every setting before applying", "required": true},
+    {"key": "profile_applied", "title": "Apply and verify the profile", "required": true},
+    {"key": "updates_checked", "title": "Windows Update has been checked", "required": true}
+  ]
+}
